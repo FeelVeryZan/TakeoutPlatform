@@ -1,0 +1,9 @@
+*.pyc
+.idea/*
+.coverage
+Coverage_Python/
+*.sqlite3
+HomePage/migrations/*
+Users/migrations/*
+*.DS_store
+venv/
