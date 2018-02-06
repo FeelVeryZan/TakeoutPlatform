@@ -3,9 +3,11 @@
 .coverage
 Coverage_Python/
 *.sqlite3
+*.DS_store
+venv/
+
 Home/migrations/*
 User/migrations/*
 Shop/migrations/*
 Manager/migrations/*
-*.DS_store
-venv/
+Shop/images/*

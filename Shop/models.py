@@ -2,9 +2,11 @@
 from django.db import models
 
 from User.models import toStringWithoutError
+from User.models import toIntegerWithoutError
+from User.models import utcToLocal
 
 # 店铺的信息
-class Shops:
+class Shops(models.Model):
     # 店铺的在数据库中的编号
     id = models.IntegerField(primary_key=True)
     # 店铺的名称
@@ -12,15 +14,15 @@ class Shops:
     # 店铺的简介
     description = models.CharField(max_length=65536, default='暂无简介')
     # 店铺的图标
-    logo = models.ImageField(null=True, default=None)
+    logo = models.ImageField(upload_to='Shop/images/ShopsLogo/', default='Shop/images/ShopsLogo/None.png')
     # 店铺的地址
     address = models.TextField(max_length=256, default='暂无地址')
-    # 店铺的电话
+    # 店铺的电话，多个号码用逗号隔开
     phoneNumber = models.TextField(max_length=256, default='暂无电话')
     # 店铺的老板数量
     ownerCnt = models.IntegerField()
     # 店铺老板（们）的用户编号，用 "编号|编号|...|编号" 的形式存储
-    ownerListStr = models.TextField(max_length=256)
+    ownerListStr = models.TextField(max_length=256, default='')
     # 店铺注册的时间
     signUpTime = models.DateTimeField(auto_now_add=True)
     # 店铺的商品数量
@@ -42,7 +44,7 @@ class Shops:
         return ownerList
     # 调试输出
     def __str__(self):
-        return 'Shop.models.Shops(' + [
+        return 'Shop.models.Shops(' + ', '.join([
             'id=' + toStringWithoutError(self.id),
             'name=' + toStringWithoutError(self.name),
             'description=' + toStringWithoutError(self.description),
@@ -51,17 +53,17 @@ class Shops:
             'phoneNumber=' + toStringWithoutError(self.phoneNumber),
             'ownerCnt=' + toStringWithoutError(self.ownerCnt),
             'ownerListStr=' + toStringWithoutError(self.ownerListStr),
-            'signUpTime=' + toStringWithoutError(self.signUpTime),
+            'signUpTime=' + toStringWithoutError(utcToLocal(self.signUpTime).strftime("%Y-%m-%d %H:%M:%S")),
             'goodsCount=' + toStringWithoutError(self.goodsCount),
             'totalSales=' + toStringWithoutError(self.totalSales),
             'monthlySales=' + toStringWithoutError(self.monthlySales),
             'weeklySales=' + toStringWithoutError(self.weeklySales),
             'dailySales=' + toStringWithoutError(self.dailySales),
-        ].join(', ') + ')'
+        ]) + ')'
 
 
 # 商品的信息
-class Goods:
+class Goods(models.Model):
     # 商品在数据库中的编号
     id = models.IntegerField(primary_key=True)
     # 商品的名称
@@ -94,18 +96,18 @@ class Goods:
             return float(self.scoreSum) / self.scoreCnt
     # 调试输出
     def __str__(self):
-        return 'Shop.models.Goods(' + [
+        return 'Shop.models.Goods(' + ', '.join([
             'id=' + toStringWithoutError(self.id),
             'name=' + toStringWithoutError(self.name),
             'description=' + toStringWithoutError(self.description),
             'picture=' + toStringWithoutError(self.picture),
             'shopId=' + toStringWithoutError(self.shopId),
-            'addTime=' + toStringWithoutError(self.addTime),
+            'addTime=' + toStringWithoutError(utcToLocal(self.addTime).strftime("%Y-%m-%d %H:%M:%S")),
             'scoreCnt=' + toStringWithoutError(self.scoreCnt),
             'scoreSum=' + toStringWithoutError(self.scoreSum),
             'totalSales=' + toStringWithoutError(self.totalSales),
             'monthlySales=' + toStringWithoutError(self.monthlySales),
             'weeklySales=' + toStringWithoutError(self.weeklySales),
             'dailySales=' + toStringWithoutError(self.dailySales),
-        ].join(', ') + ')'
+        ]) + ')'
 

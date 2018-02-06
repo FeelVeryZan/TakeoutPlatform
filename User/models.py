@@ -14,13 +14,18 @@ def toIntegerWithoutError(obj):
     except Exception as e:
         return 0
 
+# 把UTC时间转化为本地时间，否则很尴尬
+def utcToLocal(utctime):
+    import time
+    from datetime import datetime
+    return utctime + (datetime.fromtimestamp(time.time()) - datetime.utcfromtimestamp(time.time()))
 
 # 用户的信息
-class Users:
+class Users(models.Model):
     # 用户在数据库中的编号
     id = models.IntegerField(primary_key=True)
     # TODO 用户在微信中的基本信息
-    wxOpenId = models.TextField(max_length=256)
+    wxOpenId = models.TextField(max_length=256, default='')
     wxNickName = models.TextField(max_length=256, default='')
     WX_SEX_CHOICE = (
         (0, '未知'),
@@ -48,7 +53,7 @@ class Users:
     # 收货地址和联系方式的数量
     addressCount = models.IntegerField(default=0)
     # 收货地址和联系方式的列表，以 "姓名|电话|地址#姓名|电话|地址#...#姓名|电话|地址"的形式存储
-    addressListStr = models.TextField(max_length=65536, default='[]')
+    addressListStr = models.TextField(max_length=65536, default='')
     # 获取地址列表，[[姓名, 电话, 地址], ...]
     def getAddressList(self):
         addressStrList = self.addressListStr.split('#')
@@ -58,24 +63,24 @@ class Users:
         return addressList
     # 调试输出
     def __str__(self):
-        return 'User.models.Users(' + [
+        return 'User.models.Users(' + ', '.join([
             'id=' + toStringWithoutError(self.id),
             'wxOpenId=' + toStringWithoutError(self.wxNickName),
             'wxNickName=' + toStringWithoutError(self.wxNickName),
             'wxSex=' + toStringWithoutError(self.wxSex),
-            'signUpTime=' + toStringWithoutError(self.signUpTime),
-            'lastLoginTime=' + toStringWithoutError(self.lastLoginTime),
+            'signUpTime=' + toStringWithoutError(utcToLocal(self.signUpTime).strftime("%Y-%m-%d %H:%M:%S")),
+            'lastLoginTime=' + toStringWithoutError(utcToLocal(self.lastLoginTime).strftime("%Y-%m-%d %H:%M:%S")),
             'messageCount=' + toStringWithoutError(self.messageCount),
             'identity=' + toStringWithoutError(self.identity),
             'passwordOfAdministrator=' + toStringWithoutError(self.passwordOfAdministrator),
             'isTheOwnerOfWhich=' + toStringWithoutError(self.isTheOwnerOfWhich),
             'addressCount=' + toStringWithoutError(self.addressCount),
             'addressListStr=' + toStringWithoutError(self.addressListStr),
-        ].join(', ') + ')'
+        ]) + ')'
 
 
 # 每条用户收藏店铺记录的信息
-class CollectS:
+class CollectS(models.Model):
     # 这条记录在数据库中的编号
     id = models.IntegerField(primary_key=True)
     # 用户的编号
@@ -86,16 +91,16 @@ class CollectS:
     addTime = models.DateTimeField()
     # 调试输出
     def __str__(self):
-        return 'User.models.CollectS(' + [
+        return 'User.models.CollectS(' + ', '.join([
             'id=' + toStringWithoutError(self.id),
             'userId=' + toStringWithoutError(self.userId),
             'shopId=' + toStringWithoutError(self.shopId),
-            'addTime=' + toStringWithoutError(self.addTime),
-        ].join(', ') + ','
+            'addTime=' + toStringWithoutError(utcToLocal(self.addTime).strftime("%Y-%m-%d %H:%M:%S")),
+        ]) + ','
 
 
 # 每条用户收藏商品记录的信息
-class CollectG:
+class CollectG(models.Model):
     # 这条记录在数据库中的编号
     id = models.IntegerField(primary_key=True)
     # 用户的编号
@@ -106,16 +111,16 @@ class CollectG:
     addTime = models.DateTimeField()
     # 调试输出
     def __str__(self):
-        return 'User.models.CollectG(' + [
+        return 'User.models.CollectG(' + ', '.join([
             'id=' + toStringWithoutError(self.id),
             'userId=' + toStringWithoutError(self.userId),
             'goodsId=' + toStringWithoutError(self.goodsId),
-            'addTime=' + toStringWithoutError(self.addTime),
-        ].join(', ') + ')'
+            'addTime=' + toStringWithoutError(utcToLocal(self.addTime).strftime("%Y-%m-%d %H:%M:%S")),
+        ]) + ')'
 
 
 # 每个用户订单的信息
-class Orders:
+class Orders(models.Model):
     # 这条记录在数据库中的编号
     id = models.IntegerField(primary_key=True)
     # 用户的编号
@@ -127,7 +132,7 @@ class Orders:
     # 订单中的商品种类数量
     goodsCount = models.IntegerField(default=0)
     # 订单中商品的编号和数量的列表，用 "编号|数量#编号|数量#...#编号|数量" 的形式存储
-    goodsListStr = models.TextField(max_length=65536, default='[]')
+    goodsListStr = models.TextField(max_length=65536, default='')
     # 下单时间
     addTime = models.DateTimeField(auto_now_add=True)
     # 订单的状态
@@ -152,14 +157,15 @@ class Orders:
             goodsList.append(int(goods[0], int(goods[1])))
         return goodsList
     def __str__(self):
-        return 'User.models.Orders)' + [
+        return 'User.models.Orders)' + ', '.join([
             'id=' + toStringWithoutError(self.id),
             'userId=' + toStringWithoutError(self.userId),
             'userAddressId=' + toStringWithoutError(self.userAddressId),
             'shopId=' + toStringWithoutError(self.shopId),
             'goodsListStr=' + toStringWithoutError(self.goodsListStr),
-            'addTime=' + toStringWithoutError(self.addTime),
+            'addTime=' + toStringWithoutError(utcToLocal(self.addTime).strftime("%Y-%m-%d %H:%M:%S")),
             'state=' + toStringWithoutError(self.state),
             'feedbackScore=' + toStringWithoutError(self.feedbackScore),
             'feedbackContent=' + toStringWithoutError(self.feedbackContent),
-        ].join(', ') + ')'
+        ]) + ')'
+
