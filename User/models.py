@@ -1,3 +1,4 @@
+# coding: utf-8
 from django.db import models
 
 # 把一坨东西转化为字符串，强行回避所有异常
