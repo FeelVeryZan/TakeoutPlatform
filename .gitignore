@@ -11,3 +11,8 @@ User/migrations/*
 Shop/migrations/*
 Manager/migrations/*
 Shop/images/*
+
+*.png
+*.jpg
+*.bmp
+*.gif

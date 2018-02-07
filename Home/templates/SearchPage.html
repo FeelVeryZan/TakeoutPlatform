@@ -1,0 +1,46 @@
+{% extends 'Base.html' %}
+
+{% block pageTitle %}
+搜索
+{% endblock %}
+
+{% block pageBody %}
+<div class="div-center">
+	<div>
+		<div id="searchBar">
+			<form>
+				<input id="searchInput" type="text" placeholder="在这里输入想要搜索的内容" />
+                <button class="button-normal" type="button" onclick="onClickSearchListener()">
+                    搜索
+                </button>
+			</form>
+		</div>
+        <div id="resultBlock">
+
+        </div>
+	</div>
+</div>
+<script>
+    function onClickSearchListener() {
+        // 浏览器适配
+        var xmlhttp;
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();                         // code for IE7+, Firefox, Chrome, Opera, Safari
+        } else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");       // code for IE6, IE5
+        }
+        // 接收到信息后进行的操作
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                var resultBlock = document.getElementById("resultBlock");
+                resultBlock.innerHTML = xmlhttp.responseText;
+            }
+        }
+        var text = document.getElementById("searchInput").value;
+        var urlGET = "/search/static_refresh/?" + "text=" + text;
+        xmlhttp.open("GET", urlGET, true);
+        xmlhttp.send();
+        alert("onClickSearchListener");
+    }
+</script>
+{% endblock %}

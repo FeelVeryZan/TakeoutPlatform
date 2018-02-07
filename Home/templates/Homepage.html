@@ -1,0 +1,26 @@
+{% extends 'Base.html' %}
+
+{% block pageTitle %}
+主页
+{% endblock %}
+
+{% block pageBody %}
+<div class="div-center">
+    <div>
+        <div>
+            <img src="/static/images/Logo.png" />
+            <div>
+                <button class="button-normal" type="button" onclick="location.href='search/'">
+                    搜索
+                </button>
+                <button class="button-normal" type="button">
+                    推荐
+                </button>
+                <button class="button-normal" type="button">
+                    个人
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

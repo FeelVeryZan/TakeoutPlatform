@@ -1,0 +1,11 @@
+{% for shop in shopList %}
+<div>
+    <div>
+        {{ shop.name }}
+    </div>
+    <div>
+        {{ shop.description }}
+    </div>
+    {% if not forloop.last %} <br> {% endif %}
+</div>
+{% endfor %}
