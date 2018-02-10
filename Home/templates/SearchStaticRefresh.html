@@ -1,6 +1,6 @@
 {% for shopObj in shopList %}
 <div>
-    <div onclick="window.open('/shop/{{ shopObj.id }}')">
+    <div onclick="location.href='/shop/{{ shopObj.id }}'">
         {{ shopObj.name }}
     </div>
     <div>
