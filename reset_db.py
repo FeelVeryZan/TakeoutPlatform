@@ -14,16 +14,19 @@ Popen('python manage.py migrate --run-syncdb', shell=True).wait()
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "TakeoutPlatform.settings")
 django.setup()
 
-from Shop.models import Shops, Goods
-from User.models import Users, CollectS, CollectG, Orders
 import django.utils.timezone as timezone
 import datetime
+import hashlib
+
+from Shop.models import Shops, Goods
+from User.models import Users, CollectS, CollectG, Orders
 
 # 添加管理员用户
 userAdmin = Users.objects.create(
     id=1,
+    wxOpenId='admin',
     identity=2,
-    passwordOfAdministrator='123456',
+    passwordOfAdministrator=hashlib.sha512('123456'.encode('utf-8')).hexdigest(),
 )
 
 # 添加一个样例店铺，有两个老板
