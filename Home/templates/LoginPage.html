@@ -18,7 +18,7 @@
                 <td>密码</td>
                 <td>
                     <input id="passwordInput" type="password" placeholder="请输入密码">
-                    <input id="passwordCheckBox" type="checkbox" onchange="changePasswordVisible()">是否显示密码
+                    <input id="passwordCheckBox" type="checkbox" onchange="changePasswordVisible()">显示密码
                 </td>
             </tr>
         </tbody>
@@ -29,7 +29,7 @@
     <button type="submit" onclick="pressLoginBtn()">登陆</button>
 </div>
 <script>
-    function changePwdVisible() {
+    function changePasswordVisible() {
         var passwordInput = document.getElementById("passwordInput");
         var passwordCheckBox = document.getElementById("passwordCheckBox");
         //alert("" + passwordCheckBox.checked);
