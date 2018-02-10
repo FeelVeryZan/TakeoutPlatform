@@ -120,9 +120,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-
+# 静态文件路径
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(os.path.dirname(__file__),'TakeoutPlatform/static').replace('\\', '/')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "TakeoutPlatform/static"),
 )
+
+# request.session相关设置
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True

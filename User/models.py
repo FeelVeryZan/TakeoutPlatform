@@ -48,7 +48,7 @@ class Users(models.Model):
     )
     identity = models.IntegerField(choices=IDENTITY_CHOICES, default=0)
     # 如果是管理员，就记录管理员密码，否则是None
-    passwordOfAdministrator = models.TextField(null=True, default=None)
+    passwordOfAdministrator = models.TextField(max_length=128, null=True, default=None)
     # 如果是店铺老板，就记录自己的店铺的编号，否则是None
     isTheOwnerOfWhich = models.IntegerField(null=True, default=None)
     # 收货地址和联系方式的数量
