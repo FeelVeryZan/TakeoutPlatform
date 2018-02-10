@@ -1,0 +1,58 @@
+{% extends 'Base.html' %}
+
+{% block pageTitle %}
+登陆
+{% endblock %}
+
+{% block pageBody %}
+<div>
+    <table>
+        <tbody onkeydown="pressLoginOnKeyBoard()">
+            <tr>
+                <td>用户名</td>
+                <td>
+                    <input id="userNameInput" type="text" placeholder="请输入用户名" value="{{ userName }}">
+                </td>
+            </tr>
+            <tr>
+                <td>密码</td>
+                <td>
+                    <input id="passwordInput" type="password" placeholder="请输入密码">
+                    <input id="passwordCheckBox" type="checkbox" onchange="changePasswordVisible()">是否显示密码
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    {% if not firstVisitLoginPage %}
+    <font color="red">请输入正确的用户名！</font> <br>
+    {% endif %}
+    <button type="submit" onclick="pressLoginBtn()">登陆</button>
+</div>
+<script>
+    function changePwdVisible() {
+        var passwordInput = document.getElementById("passwordInput");
+        var passwordCheckBox = document.getElementById("passwordCheckBox");
+        //alert("" + passwordCheckBox.checked);
+        if (passwordCheckBox.checked) {
+            passwordInput.type = "text";
+        } else {
+            passwordInput.type = "password";
+        }
+    }
+    function pressLoginBtn() {
+        var userNameInput = document.getElementById("userNameInput");
+        var userName = userNameInput.value;
+        var passwordInput = document.getElementById("passwordInput");
+        var password = passwordInput.value;
+        var sha_pwd = sha512(password);
+        //alert("sha_pwd = \n" + sha_pwd);
+        location.href = "/login?userName=" + userName + "&password=" + sha_pwd;
+    }
+    function pressLoginOnKeyBoard(){
+        if (event.keyCode == 13) {
+            //alert("pressLoginOnKeyBoard");
+            pressLoginBtn();
+        }
+    }
+</script>
+{% endblock %}

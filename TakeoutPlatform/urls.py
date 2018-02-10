@@ -22,9 +22,12 @@ import User.views as User_views
 import Manager.views as Manager_views
 
 urlpatterns = [
+    # 访问登陆页面
+    path('', Home_views.visitLoginPage),
+    # 从登陆页面返回
+    path('login/', Home_views.visitLoginPage),
     # 访问网站主页
-    path('', Home_views.visitHomepage),
-    path('home/', Home_views.visitHomepage),
+    path('home/', Home_views.visitHomePage),
     # 访问搜索页面
     path('search/', Home_views.visitSearchPage),
     # 静态刷新搜索页面
