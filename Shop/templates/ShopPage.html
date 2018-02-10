@@ -1,0 +1,20 @@
+{% extends 'Base.html' %}
+
+{% block pageTitle %}
+{{ shopObj.name }}
+{% endblock %}
+
+{% block pageBody %}
+<div>
+    <div>
+        店铺简述：{{ shopObj.description }} <br>
+        联系段话：{{ shopObj.phoneNumber }} <br>
+    </div>
+    <div>
+        共找到以下{{ goodsCnt }}件商品：<br>
+        {% for goodsObj in goodsList %}
+        第{{ forloop.counter }}件商品：{{ goodsObj.name }}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
