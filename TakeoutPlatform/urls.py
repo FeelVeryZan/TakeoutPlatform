@@ -29,6 +29,8 @@ urlpatterns = [
     path('search/', Home_views.visitSearchPage),
     # 静态刷新搜索页面
     path('search/static_refresh/', Home_views.visitSearchStaticRefresh),
+    # 访问店铺页面
+    path('shop/<int:shopId>/', Shop_views.visitShopPage),
 
     # Django自带的页面，应该是可以删掉的吧
     path('admin/', admin.site.urls),

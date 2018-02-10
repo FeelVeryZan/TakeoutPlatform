@@ -11,6 +11,10 @@ def visitHomepage(request):
     msgMap = {}
     return render(request, 'Homepage.html', msgMap)
 
+# 渲染“找不到页面”的页面
+def visitNotFoundPage(request):
+    return render(request, 'PageNotFound.html')
+
 # 渲染搜索页面
 def visitSearchPage(request):
     print('    visitSearchPage')

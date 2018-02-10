@@ -72,6 +72,10 @@ class Goods(models.Model):
     description = models.CharField(max_length=65536, default='暂无简介')
     # 商品的样例图片
     picture = models.ImageField(null=True, default=None)
+    # 商品的原价
+    price = models.IntegerField(default=1)
+    # 商品的促销信息，TODO 各种促销模式的存储方式待定
+    salesPromotion = models.TextField(max_length=256, default='')
     # 商品所属的店铺编号
     shopId = models.IntegerField()
     # 商品添加的时间
