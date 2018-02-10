@@ -1,10 +1,10 @@
-{% for shop in shopList %}
+{% for shopObj in shopList %}
 <div>
-    <div>
-        {{ shop.name }}
+    <div onclick="window.open('/shop/{{ shopObj.id }}')">
+        {{ shopObj.name }}
     </div>
     <div>
-        {{ shop.description }}
+        {{ shopObj.description }}
     </div>
     {% if not forloop.last %} <br> {% endif %}
 </div>
