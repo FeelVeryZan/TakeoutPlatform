@@ -26,6 +26,8 @@ urlpatterns = [
     path('', Home_views.visitLoginPage),
     # 从登陆页面返回
     path('login/', Home_views.visitLoginPage),
+    # 访问“找不到页面”的页面
+    path('notFound/', Home_views.visitNotFoundPage),
     # 访问网站主页
     path('home/', Home_views.visitHomePage),
     # 访问搜索页面
@@ -34,6 +36,14 @@ urlpatterns = [
     path('search/static_refresh/', Home_views.visitSearchStaticRefresh),
     # 访问店铺页面
     path('shop/<int:shopId>/', Shop_views.visitShopPage),
+    # 访问管理员主页
+    path('manage/', Manager_views.visitManagePage),
+    # 访问手动添加新商家的页面
+    path('manage/addNewShop/', Manager_views.visitAddNewShop),
+    # 访问处理投诉的页面
+    path('manage/handlingComplaint/', Manager_views.visitHandlingComplaint),
+    # 访问审核店铺变动
+    path('manage/examineAndVerify/', Manager_views.visitExamineAndVerify),
 
     # Django自带的页面，应该是可以删掉的吧
     path('admin/', admin.site.urls),

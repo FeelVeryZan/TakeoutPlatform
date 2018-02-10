@@ -1,0 +1,22 @@
+{% extends 'Base.html' %}
+
+{% block pageTitle %}
+管理
+{% endblock %}
+
+{% block pageBody %}
+<div>
+    <div>
+        <button onclick="location.href='/home/'">进入网站主页</button>
+    </div>
+    <div>
+        <button onclick="location.href='/manage/addNewShop/'">添加新商家</button>
+    </div>
+    <div>
+        <button onclick="location.href='/manage/handlingComplaint/'">处理投诉</button>
+    </div>
+    <div>
+        <button onclick="location.href='/manage/examineAndVerify/'">审核店铺变动</button>
+    </div>
+</div>
+{% endblock %}

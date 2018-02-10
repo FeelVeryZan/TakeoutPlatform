@@ -30,7 +30,8 @@ def visitLoginPage(request):
     request.session['userId'] = userList[0].id
     request.session['userName'] = userList[0].wxOpenId
     request.session['identity'] = userList[0].identity
-    print('session = ', dict(request.session))
+    if userList[0].identity == 2:
+        return HttpResponseRedirect('/manage/')
     return HttpResponseRedirect('/home/')
 
 # 渲染网站主页
@@ -49,12 +50,16 @@ def visitNotFoundPage(request):
 # 渲染搜索页面
 def visitSearchPage(request):
     print('    visitSearchPage')
+    if request.session.get('userId', None) == None:
+        return HttpResponseRedirect('/')
     msgMap = {}
     return render(request, 'SearchPage.html', msgMap)
 
 # 渲染搜索结果，静态刷新搜索页面
 def visitSearchStaticRefresh(request):
     print('    visitSearchStaticRefresh')
+    if request.session.get('userId', None) == None:
+        return HttpResponseRedirect('/')
     text = request.GET.get('text', None)
     msgMap = {}
     shopList = list(Shops.objects.all()[:10])
