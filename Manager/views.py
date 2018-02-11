@@ -13,7 +13,7 @@ def visitAddNewShop(request):
     print('    visitAddNewShop')
     if request.session.get('identity', -1) != 2:
         return HttpResponseRedirect('/')
-    return HttpResponseRedirect('/notFound/')
+    return render(request, 'AddNewShopPage.html')
 
 # 渲染处理投诉的页面
 def visitHandlingComplaint(request):
