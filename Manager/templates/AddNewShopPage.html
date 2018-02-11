@@ -1,0 +1,140 @@
+{% extends 'Base.html' %}
+
+{% block pageTitle %}
+添加新商家
+{% endblock %}
+
+{% block pageBody %}
+<div>
+    <div id="infoDiv" style="display:">
+        <table>
+            <tbody>
+                <tr>
+                    <td>名称</td>
+                    <td><input id="nameInput"></td>
+                </tr>
+                <tr>
+                    <td>简介</td>
+                    <td><input id="descriptionInput"></td>
+                </tr>
+                <tr>
+                    <td>图标</td>
+                    <td><input id="logoInput"></td>
+                </tr>
+                <tr>
+                    <td>地址</td>
+                    <td><input id="addressInput"></td>
+                </tr>
+                <tr>
+                    <td>电话</td>
+                    <td><input id="phoneNumberInput"></td>
+                </tr>
+                <tr>
+                    <td>老板</td>
+                    <td><input id="ownerInput"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <button onclick="cancel()">取消并放弃编辑</button>
+            <button onclick="nextStepToGoods()">下一步：添加商品</button>
+        </div>
+    </div>
+    <div id="goodsDiv" style="display:none">
+        <table>
+            <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>简介</th>
+                    <th>图片</th>
+                    <th>价格</th>
+                    <th>
+                        <font onclick="selectAll()">全选</font>/<font onclick="selectOther()">反选</font>
+                    </th>
+                    <th><u onclick="addNewLine()">增加</u></th>
+                </tr>
+            </thead>
+            <tbody id="goodsTbody">
+                <tr name="goodsTr">
+                    <td><input name="goodsName"></td>
+                    <td><input name="goodsDescription"></td>
+                    <td><input name="goodsPicture"></td>
+                    <td><input name="goodsPrece"></td>
+                    <td><input name="goodsSelect" type="checkbox"></td>
+                    <td><font onclick="removeLine(this)">移除</font></td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <button onclick="cancel()">取消并放弃编辑</button>
+            <button onclick="backToInformation()">上一步：店铺基本信息</button>
+            <button onclick="confirmAndSubmit()">确认并提交</button>
+        </div>
+        <div>
+            <button onclick="cancel()">取消并放弃编辑</button>
+            <button onclick="backToInformation()">上一步：店铺基本信息</button>
+            <button onclick="confirmAndSubmit()">确认并提交</button>
+        </div>
+    </div>
+</div>
+<script>
+    function cancel() {
+        var res = confirm("真的要放弃编辑吗？");
+        if (res == true) {
+            location.href = "/manage/";
+        }
+    }
+    function nextStepToGoods() {
+        document.getElementById("infoDiv").style.display = "none";
+        document.getElementById("goodsDiv").style.display = "";
+    }
+    function backToInformation() {
+        document.getElementById("infoDiv").style.display = "";
+        document.getElementById("goodsDiv").style.display = "none";
+    }
+    function confirmAndSubmit() {
+    }
+    function selectAll() {
+        var goodsSelectList = document.getElementsByName("goodsSelect");
+        for (var i = 0; i < goodsSelectList.length; i ++) {
+            goodsSelectList[i].checked = true;
+        }
+    }
+    function selectOther() {
+        var goodsSelectList = document.getElementsByName("goodsSelect");
+        for (var i = 0; i < goodsSelectList.length; i ++) {
+            goodsSelectList[i].checked = ! goodsSelectList[i].checked;
+        }
+    }
+    function clearAllInput(node) {
+        for (var i = 0; i < node.children.length; i ++) {
+            if (node.children[i].nodeName.toString().toLowerCase() == "td") {
+                clearAllInput(node.children[i]);
+            } else if (node.children[i].nodeName.toString().toLowerCase() == "input") {
+                console.log(node.children[i].type);
+                if (node.children[i].type == "text") {
+                    node.children[i].value = "";
+                } else if (node.children[i].type == "checkbox") {
+                    node.children[i].checked = false;
+                }
+            }
+        }
+    }
+    function addNewLine() {
+        var goodsTbody = document.getElementById("goodsTbody");
+        var goodsNewTr = goodsTbody.children[0].cloneNode(true);
+        goodsTbody.appendChild(goodsNewTr);
+        clearAllInput(goodsNewTr);
+    }
+    function removeLine(fontObj) {
+        var tdObj = fontObj.parentNode;
+        var trObj = tdObj.parentNode;
+        var tbodyObj = trObj.parentNode
+        if (tbodyObj.children.length > 1) {
+            tbodyObj.removeChild(trObj);
+        } else {
+            alert("至少一件商品！");
+        }
+    }
+</script>
+{% endblock %}
