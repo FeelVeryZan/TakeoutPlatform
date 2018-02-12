@@ -1,0 +1,20 @@
+/** 基于BootStrap的补充格式 **/
+.container-fluid-extra {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.col-xs-extra {
+    padding: 0 5px 0 0;
+}
+.form-control-extra {
+    width: auto;
+    margin: 5px;
+}
+.dropdown-extra {
+    display: inline-block;
+    width: 100%;
+}
+.btn-default-extra {
+    width: 100%;
+    margin: 5px;
+}
