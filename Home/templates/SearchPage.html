@@ -60,13 +60,14 @@
                 </button>
             </div>
             <div class="col-xs-3 col-xs-extra">
-                <li class="dropdown dropdown-extra">
+                <li class="dropdown dropdown-extra" id="searchFilterLi">
                     <button type="button" class="btn btn-default btn-default-extra dropdown-toggle"
                             id="searchFilterBtn" data-toggle="dropdown">
                         筛选
                         <strong class="caret"></strong>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-right" style="min-width:350%;" role="menu" aria-labelledby="searchOption">
+                    <ul class="dropdown-menu dropdown-menu-right" style="min-width:350%;"
+                        role="menu" aria-labelledby="searchOption" id="searchFilterUi">
                         <li>
                             <a>
                                 <b>
@@ -77,55 +78,54 @@
                         <li class="col-xs-12 col-xs-extra-12">
                             <div class="col-xs-4 col-xs-extra">
                                 <button type="button" class="btn btn-default btn-default-extra btn-unselected"
-                                        onclick="onChangeAcceptedSeller(this)">
+                                        onclick="onChangeAcceptedSeller(this)" id="filterSeller0">
                                     蜂鸟专送
                                 </button>
                             </div>
                             <div class="col-xs-4 col-xs-extra">
                                 <button type="button" class="btn btn-default btn-default-extra btn-unselected"
-                                        onclick="onChangeAcceptedSeller(this)">
+                                        onclick="onChangeAcceptedSeller(this)" id="filterSeller1">
                                     准时达
                                 </button>
                             </div>
                             <div class="col-xs-4 col-xs-extra">
                                 <button type="button" class="btn btn-default btn-default-extra btn-unselected"
-                                        onclick="onChangeAcceptedSeller(this)">
+                                        onclick="onChangeAcceptedSeller(this)" id="filterSeller2">
                                     平拍商家
                                 </button>
                             </div>
                             <div class="col-xs-4 col-xs-extra">
                                 <button type="button" class="btn btn-default btn-default-extra btn-unselected"
-                                        onclick="onChangeAcceptedSeller(this)">
+                                        onclick="onChangeAcceptedSeller(this)" id="filterSeller3">
                                     外卖保
                                 </button>
                             </div>
                             <div class="col-xs-4 col-xs-extra">
                                 <button type="button" class="btn btn-default btn-default-extra btn-unselected"
-                                        onclick="onChangeAcceptedSeller(this)">
+                                        onclick="onChangeAcceptedSeller(this)" id="filterSeller4">
                                     新店
                                 </button>
                             </div>
                             <div class="col-xs-4 col-xs-extra">
                                 <button type="button" class="btn btn-default btn-default-extra btn-unselected"
-                                        onclick="onChangeAcceptedSeller(this)">
+                                        onclick="onChangeAcceptedSeller(this)" id="filterSeller5">
                                     开发票
                                 </button>
                             </div>
                             <div class="col-xs-4 col-xs-extra">
                                 <button type="button" class="btn btn-default btn-default-extra btn-unselected"
-                                        onclick="onChangeAcceptedSeller(this)">
+                                        onclick="onChangeAcceptedSeller(this)" id="filterSeller6">
                                     接受预定
                                 </button>
                             </div>
                             <div class="col-xs-4 col-xs-extra">
                                 <button type="button" class="btn btn-default btn-default-extra btn-unselected"
-                                        onclick="onChangeAcceptedSeller(this)">
+                                        onclick="onChangeAcceptedSeller(this)" id="filterSeller7">
                                     会员领红包
                                 </button>
                             </div>
                         </li>
-					    <li class="divider col-xs-12">
-					    </li>
+                        <li class="divider col-xs-12 col-xs-extra-12"></li>
                         <li>
                             <a>
                                 <b>
@@ -133,11 +133,85 @@
                                 </b>
                             </a>
                         </li>
-                        <li>
-                            <a class="dropdown-unselected" id="searchFilterOpt2">起送价最低</a>
+                        <li class="col-xs-12 col-xs-extra-12">
+                            <div class="col-xs-4 col-xs-extra">
+                                <button type="button" class="btn btn-default btn-default-extra btn-unselected"
+                                        onclick="onChangeAcceptedSeller(this);onChangeDiscount(0);"
+                                        id="filterDiscount0">
+                                    新用户优惠
+                                </button>
+                            </div>
+                            <div class="col-xs-4 col-xs-extra">
+                                <button type="button" class="btn btn-default btn-default-extra btn-unselected"
+                                        onclick="onChangeAcceptedSeller(this);onChangeDiscount(1);"
+                                        id="filterDiscount1">
+                                    特价商品
+                                </button>
+                            </div>
+                            <div class="col-xs-4 col-xs-extra">
+                                <button type="button" class="btn btn-default btn-default-extra btn-unselected"
+                                        onclick="onChangeAcceptedSeller(this);onChangeDiscount(2);"
+                                        id="filterDiscount2">
+                                    下单立减
+                                </button>
+                            </div>
+                            <div class="col-xs-4 col-xs-extra">
+                                <button type="button" class="btn btn-default btn-default-extra btn-unselected"
+                                        onclick="onChangeAcceptedSeller(this);onChangeDiscount(3);"
+                                        id="filterDiscount3">
+                                    赠品优惠
+                                </button>
+                            </div>
+                            <div class="col-xs-4 col-xs-extra">
+                                <button type="button" class="btn btn-default btn-default-extra btn-unselected"
+                                        onclick="onChangeAcceptedSeller(this);onChangeDiscount(4);"
+                                        id="filterDiscount4">
+                                    下单返红包
+                                </button>
+                            </div>
+                            <div class="col-xs-4 col-xs-extra">
+                                <button type="button" class="btn btn-default btn-default-extra btn-unselected"
+                                        onclick="onChangeAcceptedSeller(this);onChangeDiscount(5);"
+                                        id="filterDiscount5">
+                                    进点领红包
+                                </button>
+                            </div>
                         </li>
+                        <li class="divider col-xs-12 col-xs-extra-12"></li>
                         <li>
-                            <a class="dropdown-unselected" id="searchFilterOpt3">配送最快</a>
+                            <a>
+                                <b>
+                                    人均价格
+                                </b>
+                                <a style="display: none;">
+                                    请输入正确的数据
+                                </a>
+                            </a>
+                        </li>
+                        <li class="col-xs-12 col-xs-extra-12">
+                            <div class="col-xs-12 col-xs-extra">
+                                <input type="number" placeholder="无限制" id="searchFilterMinPrice"
+                                       oninput="onInputPriceLimit(0)">
+                                -
+                                <input type="number" placeholder="无限制" id="searchFilterMaxPrice"
+                                       oninput="onInputPriceLimit(1)">
+                            </div>
+                        </li>
+                        <li class="divider col-xs-12 col-xs-extra-12"></li>
+                        <li class="col-xs-12 col-xs-extra-12">
+                            <div class="col-xs-6 col-xs-extra"></div>
+                            <div class="col-xs-3 col-xs-extra">
+                                <button type="button" class="btn btn-default btn-default-extra"
+                                        onclick="searchFilterClear()">
+                                    清空
+                                </button>
+                            </div>
+                            <div class="col-xs-3 col-xs-extra">
+                                <button type="button" class="btn btn-default btn-default-extra"
+                                        onclick="searchFilterConfirm()">
+                                    确认
+                                </button>
+                            </div>
                         </li>
                     </ul>
                 </li>
@@ -198,12 +272,10 @@
         xmlhttp.open("GET", urlGET, true);
         xmlhttp.send();
     }
-</script>
-<script>
     //搜索的排序选项的单选性质
     function onChangeSortMethod(i) {
-        var searchSortBtn = document.getElementById("searchSortBtn");
         var searchSortOptContent = new Array("综合排序", "好评优先", "起送价最低", "配送最快");
+        var searchSortBtn = document.getElementById("searchSortBtn");
         searchSortBtn.childNodes[0].nodeValue = " " + searchSortOptContent[i] + " ";
         for (var j = 0; j < 4; j ++) {
             var option = document.getElementById("searchSortOpt" + j);
@@ -212,14 +284,64 @@
     }
     //商家选择的checkbox性质
     function onChangeAcceptedSeller(obj) {
-        obj.className = obj.className.replace("btn-unselected", "btn-tmp-selected").replace("btn-selected", "btn-unselected").replace("btn-tmp-selected", "btn-selected");
+        obj.className = obj.className.replace("btn-unselected", "btn-tmp-selected")
+                                     .replace("btn-selected", "btn-unselected")
+                                     .replace("btn-tmp-selected", "btn-selected");
     }
-    //商家多选区域，阻值点击一个商家之后dropdown框自己缩回去
-    $('.btn-unselected').click(function(e) {
+    //商家多选区域、优惠活动单选区域，阻值点击一个商家之后dropdown框自己缩回去
+    $('#searchFilterUi').click(function(e) {
         e.stopPropagation();
     });
-    $('.btn-selected').click(function(e) {
-        e.stopPropagation();
-    });
+    //优惠活动的单选性质
+    function onChangeDiscount(i) {
+        for (var j = 0; j < 6; j ++) {
+            var option = document.getElementById("filterDiscount" + j);
+            if (i != j) {
+                option.className = option.className.replace("btn-selected", "btn-unselected");
+            }
+        }
+    }
+    //价格区间的初值、范围限制和合法性
+    function onInputPriceLimit(onInputId) {
+        var minPriceInput = document.getElementById("searchFilterMinPrice");
+        var minPrice = parseInt(minPriceInput.value);
+        var maxPriceInput = document.getElementById("searchFilterMaxPrice");
+        var maxPrice = parseInt(maxPriceInput.value);
+        minPrice = minPrice < 0 ? 0 : minPrice;
+        minPrice = minPrice > 9999 ? 9999 : minPrice;
+        maxPrice = maxPrice < 0 ? 0 : maxPrice;
+        maxPrice = maxPrice > 9999 ? 9999 : maxPrice;
+        if (minPrice > maxPrice) {
+            if (onInputId == 0) {
+                maxPrice = minPrice;
+            } else {
+                minPrice = maxPrice;
+            }
+        }
+        minPriceInput.value = isNaN(minPrice) ? "" : minPrice;
+        maxPriceInput.value = isNaN(maxPrice) ? "" : maxPrice;
+    }
+    //清空筛选器
+    function searchFilterClear() {
+        for (var j = 0; j < 8; j ++) {
+            var option = document.getElementById("filterSeller" + j);
+            option.className = option.className.replace("btn-selected", "btn-unselected");
+        }
+        for (var j = 0; j < 6; j ++) {
+            var option = document.getElementById("filterDiscount" + j);
+            option.className = option.className.replace("btn-selected", "btn-unselected");
+        }
+        var minPriceInput = document.getElementById("searchFilterMinPrice");
+        minPriceInput.value = "";
+        var maxPriceInput = document.getElementById("searchFilterMaxPrice");
+        maxPriceInput.value = "";
+    }
+    //提交筛选器
+    function searchFilterConfirm() {
+        li = document.getElementById("searchFilterLi");
+        li.className = li.className.replace(" open", "");
+        $("#searchFilterBtn").attr("aria-expanded","false");
+        // TODO
+    }
 </script>
 {% endblock %}
