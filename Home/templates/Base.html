@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
         {% block pageTitle %}
         空页面
@@ -10,9 +12,15 @@
     </title>
 </head>
 
-<link rel="stylesheet" type="text/css" href="/static/css/nodgd.css" />
-
+<!-- SHA-512 -->
 <script type="text/ecmascript" src="/static/js/sha512.js" ></script>
+<!-- Bootstrap -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+<!-- 自己写的CSS -->
+<link rel="stylesheet" type="text/css" href="/static/css/nodgd.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/extra.css" />
 
 <body>
 {% block pageBody %}
