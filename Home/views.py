@@ -53,6 +53,19 @@ def visitSearchPage(request):
     if request.session.get('userId', None) == None:
         return HttpResponseRedirect('/')
     msgMap = {}
+    sortMethodList = ['综合排序', '好评优先', '起送价最低', '配送最快']
+    msgMap['sortMethodList'] = sortMethodList
+    filterSellerList = ['蜂鸟专送', '准时达', '平拍商家', '外卖保', '新店', '开发票', '接受预定', '会员领红包']
+    msgMap['filterSellerList'] = filterSellerList
+    filterDiscountList = ['新用户优惠', '特价商品', '下单立减', '赠品优惠', '下单返红包', '进店领红包']
+    msgMap['filterDiscountList'] = filterDiscountList
+    shopList = list(Shops.objects.all()[:10])
+    for shop in shopList:
+        if len(shop.description) < 50:
+            shop.descWithLimit = shop.description
+        else:
+            shop.descWithLimit = shop.description[:47] + "..."
+    msgMap['shopList'] = shopList
     return render(request, 'SearchPage.html', msgMap)
 
 # 渲染搜索结果，静态刷新搜索页面

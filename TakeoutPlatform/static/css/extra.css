@@ -63,3 +63,27 @@
 .btn-selected {
     background-color: #AFAFFA;
 }
+.div-shopcard {
+    display: block;
+    background: #EFEFEF;
+    min-height: 100px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.div-square {
+    display: block;
+    background: #ccc;
+    height: 100vw;
+    min-height: 100px;
+}
+.div-square: after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+.img-shoplogo {
+    display: block;
+    /*position: absolute;*/
+    height: 25vw;
+    max-height: 100px;
+}
