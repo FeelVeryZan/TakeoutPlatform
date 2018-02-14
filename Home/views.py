@@ -59,13 +59,7 @@ def visitSearchPage(request):
     msgMap['filterSellerList'] = filterSellerList
     filterDiscountList = ['新用户优惠', '特价商品', '下单立减', '赠品优惠', '下单返红包', '进店领红包']
     msgMap['filterDiscountList'] = filterDiscountList
-    shopList = list(Shops.objects.all()[:10])
-    for shop in shopList:
-        if len(shop.description) < 50:
-            shop.descWithLimit = shop.description
-        else:
-            shop.descWithLimit = shop.description[:47] + "..."
-    msgMap['shopList'] = shopList
+    msgMap['shopList'] = []
     return render(request, 'SearchPage.html', msgMap)
 
 # 渲染搜索结果，静态刷新搜索页面
@@ -76,5 +70,10 @@ def visitSearchStaticRefresh(request):
     text = request.GET.get('text', None)
     msgMap = {}
     shopList = list(Shops.objects.all()[:10])
+    for shop in shopList:
+        if len(shop.description) < 50:
+            shop.descWithLimit = shop.description
+        else:
+            shop.descWithLimit = shop.description[:47] + "..."
     msgMap['shopList'] = shopList
     return render(request, 'SearchStaticRefresh.html', msgMap)
