@@ -1,11 +1,14 @@
-{% for shopObj in shopList %}
-<div>
-    <div onclick="location.href='/shop/{{ shopObj.id }}'">
-        {{ shopObj.name }}
+{% for shop in shopList %}
+<div class="col-xs-12 col-xs-extra-12 div-shopcard"
+     onclick="location.href='/shop/{{ shop.id }}/'">
+    <div class="col-xs-3 col-xs-extra">
+        <img class="center-block img-shoplogo" src="{{ shop.logo }}">
     </div>
-    <div>
-        {{ shopObj.description }}
+    <div class="col-xs-9 col-xs-extra">
+            <p>
+                <h4>{{ shop.name }}</h4>
+                {{ shop.descWithLimit }}
+            </p>
     </div>
-    {% if not forloop.last %} <br> {% endif %}
 </div>
 {% endfor %}

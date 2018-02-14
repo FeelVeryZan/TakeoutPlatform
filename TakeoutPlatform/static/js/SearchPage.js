@@ -23,12 +23,13 @@ function onClickSearchBtn() {
 }
 //搜索的排序选项的单选性质
 function onChangeSortMethod(i) {
-    var searchSortOptContent = new Array("综合排序", "好评优先", "起送价最低", "配送最快");
     var searchSortBtn = document.getElementById("searchSortBtn");
-    searchSortBtn.childNodes[0].nodeValue = " " + searchSortOptContent[i] + " ";
     for (var j = 0; j < 4; j ++) {
         var option = document.getElementById("searchSortOpt" + j);
         option.className = "dropdown-" + (i == j ? "" : "un") + "selected";
+        if (i == j) {
+            searchSortBtn.childNodes[0].nodeValue = " " + option.innerHTML + " ";
+        }
     }
 }
 //商家选择的checkbox性质
