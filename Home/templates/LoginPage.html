@@ -5,28 +5,35 @@
 {% endblock %}
 
 {% block pageBody %}
-<div>
-    <table>
+<div style="margin:20px; ">
+    <section>
+        <img src="/static/images/TakeoutLogo.png" alt="Just a Logo" width="320">
+
+    </section>
+    <table style="margin-top:0.25in; margin-left:0.25in; margin-right:0.1in;" cellpadding="3" cellspacing="18" >
         <tbody onkeydown="pressLoginOnKeyBoard()">
-            <tr>
-                <td>用户名</td>
+            <tr style="font-family: '微软雅黑 Light';">
+                <td style="min-width: 52px" align="left">用户名</td>
                 <td>
-                    <input id="userNameInput" type="text" placeholder="请输入用户名" value="{{ userName }}">
+                    <input id="userNameInput" type="text" placeholder="请输入用户名" value="{{ userName }}" style="width:144px">
                 </td>
             </tr>
-            <tr>
-                <td>密码</td>
+            <tr style="font-family: '微软雅黑 Light'">
+                <td style="min-width: 52px" align="left">密码</td>
                 <td>
-                    <input id="passwordInput" type="password" placeholder="请输入密码">
-                    <input id="passwordCheckBox" type="checkbox" onchange="changePasswordVisible()">显示密码
+                    <input id="passwordInput" type="password" placeholder="请输入密码" style="width:144px">
+                </td>
+                <td>
+                    <input id="passwordCheckBox" type="checkbox" onchange="changePasswordVisible()" style="margin-left: 18px;" width="52px">显示密码
                 </td>
             </tr>
+
         </tbody>
     </table>
     {% if not firstVisitLoginPage %}
     <font color="red">请输入正确的用户名！</font> <br>
     {% endif %}
-    <button type="submit" onclick="pressLoginBtn()">登陆</button>
+    <button type="submit" onclick="pressLoginBtn()" class="button-normal" style="margin-left:auto; margin-right:auto; margin-top:24px; width:320px; height:52px">登陆</button>
 </div>
 <script>
     function changePasswordVisible() {
@@ -54,5 +61,13 @@
             pressLoginBtn();
         }
     }
+
+    function getwidth(){
+        return {
+        width: window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
+        height: window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+    };
+    }
+
 </script>
 {% endblock %}

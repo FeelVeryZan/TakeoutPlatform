@@ -9,8 +9,11 @@
 }
 .button-normal {
     /* 内部背景颜色 */
-    background-color:rgba(0, 180, 255, 0.7);
-    /* 内部间隔距离 */
+    background-color:rgba(255, 219, 207, 0.4);
+    /* 大小比例 */
+    width: 90%;
+    height: 80px;
+    /*内部间隔距离 */
     padding-top:5px;
     padding-bottom:5px;
     padding-left:10px;
@@ -21,8 +24,8 @@
     border-left:0px;
     border-right:0px;
     /* 外部间隔距离 */
-    margin-top:5px;
-    margin-bottom:5px;
+    margin-top:20px;
+    margin-bottom:20px;
     margin-left:10px;
     margin-right:10px;
     /* 字体 */

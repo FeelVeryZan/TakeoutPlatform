@@ -25,7 +25,7 @@ SECRET_KEY = 'u65wh*#usign=03^g^j4!tp$56ag04u9itlkibqu22my6^*ta-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
